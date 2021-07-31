@@ -1,0 +1,8 @@
+html, body {
+    font-family: 'Open Sans';
+}
+
+img {
+    padding: 5px;
+    border: 1px solid #ccc;
+}

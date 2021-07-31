@@ -14,8 +14,9 @@
     <script defer src="/__/firebase/8.3.1/firebase-auth.js"></script>
     <script defer src="/__/firebase/8.3.1/firebase-database.js"></script>
     <script defer src="/__/firebase/init.js?useEmulator=true"></script>
-
-    <script src="js/signIn.js"></script>
+    
+    <script defer src="js/signOut.js"></script>
+    <script defer src="js/user.js"></script>
   </head>
   <body>
 
@@ -24,16 +25,10 @@
             <div class="container has-text-centered">
                 <div class="columns is-vcentered">
                     <div class="column is-6 is-offset-3">
-                        <h1 class="title is-2">
-                            Toucan Tango
-                        </h1>
-                        <h2 class="subtitle is-4">
-                            Log in to view your notes or create a new one. 
-                        </h2>
-                        <br>
+                        <h1 class="title is-2"></h1>
                         <p class="has-text-centered">
-                            <a class="button is-medium is-info is-outlined" onclick="signIn()">
-                                Sign In
+                            <a class="button is-medium is-info is-outlined" onclick="signOut()">
+                                Sign Out
                             </a>
                         </p>
                     </div>
