@@ -17,6 +17,7 @@
     
     <script defer src="js/signOut.js"></script>
     <script defer src="js/user.js"></script>
+    <script defer src="js/messages.js"></script>
   </head>
   <body>
 
@@ -26,11 +27,14 @@
                 <div class="columns is-vcentered">
                     <div class="column is-6 is-offset-3">
                         <h1 class="title is-2"></h1>
-                        <p class="has-text-centered">
-                            <a class="button is-medium is-info is-outlined" onclick="signOut()">
-                                Sign Out
-                            </a>
+                        <p class="has-text-centered">    
                         </p>
+                        <ul id="messages"></ul>
+                        <textarea id="message" class="textarea" placeholder="Message Taco Terrier"></textarea>
+                        <button id="sendBtn" class="button" onclick="sendMessage()">Send</button>
+                        <a class="button is-medium is-info is-outlined" onclick="signOut()">
+                            Sign Out
+                        </a>
                     </div>
                 </div>
             </div>
