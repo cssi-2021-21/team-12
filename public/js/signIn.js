@@ -1,6 +1,6 @@
 const signIn = () => {
   var provider = new firebase.auth.GoogleAuthProvider();
-  
+
   firebase.auth()
   .signInWithPopup(provider)
   .then((result) => {
@@ -8,7 +8,6 @@ const signIn = () => {
     var credential = result.credential;
     var token = credential.accessToken;
 
-    var user = result.user;
     window.location = 'user.html';
   }).catch((error) => {
     var errorCode = error.code;
