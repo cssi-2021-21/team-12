@@ -15,13 +15,35 @@
     <script defer src="/__/firebase/8.3.1/firebase-database.js"></script>
     <script defer src="/__/firebase/init.js?useEmulator=true"></script>
     
+    <script defer src="js/signOut.js"></script>
     <script defer src="js/chat.js"></script>
   </head>
   <body>
-    <section>
-        <div id= "imageHolderDiv">
-            
+
+    <section class="hero is-fullheight is-default is-bold">
+        <div class="hero-body">
+            <div class="container has-text-centered">
+                <div class="columns is-vcentered">
+                    <div class="column is-6 is-offset-3">
+                        <h1 class="title is-2"></h1>
+                        <p class="has-text-centered"></p>
+                        <ul id="chats"></ul>
+                        <div class="control">
+                            <ul id="messages"></ul>
+                            <textarea id="message" class="textarea" placeholder="Message Taco Terrier"></textarea>
+                            <button class="button" onclick="sendMessage()">Send</button>
+                            <div id= "imageHolderDiv">
+                                
+                            </div>
+                        </div>
+                        <a class="button is-medium is-info is-outlined" onclick="signOut()">
+                            Sign Out
+                        </a>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
+
   </body>
 </html>
