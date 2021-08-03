@@ -7,7 +7,7 @@ const stringToWords = (message) => {
     
     
     for(let i = 0; i < rawTokens.length; i++){
-        rawTokens.search(/[]/g); 
+        console.log(rawTokens[i].search(/\w/g)); 
         if (rawTokens[i] != ""){
             tokens.push(rawTokens[i]);
         }
