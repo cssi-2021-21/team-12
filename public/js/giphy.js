@@ -1,9 +1,20 @@
 console.log("chat script running");
-const stringToToken = (message) => {
+
+const stringToWords = (message) => {
+    let rawTokens = message.split(" ");
+    let removeChars = []
     let tokens = [];
-    //convert string into tokens
-    return tokens;
+    
+    
+    for(let i = 0; i < rawTokens.length; i++){
+        rawTokens.search(/[]/g); 
+        if (rawTokens[i] != ""){
+            tokens.push(rawTokens[i]);
+        }
+    }
+    console.log(tokens);
 }
+
 
 const returnGifUrls = (keyWords) => {
     let gifUrls = [];
@@ -28,8 +39,10 @@ const returnGifUrls = (keyWords) => {
 
 const imageHolderDiv = document.querySelector("#imageHolderDiv");
 
-let keyWords = [];
-keyWords = ["cat", "dog", "bird"];
+let stringMessage = "alice  bob   chloe;dan ellen.";
+stringToWords(stringMessage);
+/*
+let keyWords = ["cat", "dog", "bird"];
 let gifUrls = returnGifUrls(keyWords);
 let gifDisplay = "";
 console.log(gifUrls);
@@ -39,3 +52,4 @@ for(gif of gifUrls){
 }
 console.log(gifDisplay);
 
+*/
