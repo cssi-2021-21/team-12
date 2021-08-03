@@ -29,9 +29,30 @@
                         <p class="has-text-centered"></p>
                         <ul id="chats"></ul>
                         <div class="control">
-                            <input id="roomCode" class="input" placeholder="Enter Room Code">
-                            <button class="button" onclick="enterChat()">Enter Room</button>
-                            <button class="button" onclick="createChat()">Create Room</button>
+                            <button id="profile" class="button">Profile</button>
+                            <div id="edit_profile" class="modal">
+                                <div class="modal-background">
+                                    <div class="modal-card">
+                                        <section class="modal-card-body">
+                                            Display Name:
+                                            <input id="new_name" class="input is-normal" type="text">
+                                        </section>
+                                        <footer class="modal-card-foot">
+                                            <button id="update_profile" class="button is-success">
+                                                Save Changes
+                                            </button>
+                                            <button id="close_profile" class="button">
+                                                Cancel
+                                            </button>
+                                        </footer>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="control">
+                            <input id="room_code" class="input" placeholder="Enter Room Code">
+                            <button id="enter_chat" class="button">Enter Room</button>
+                            <button id="create_chat" class="button">Create Room</button>
                         </div>
                         <a class="button is-medium is-info is-outlined" onclick="signOut()">
                             Sign Out
