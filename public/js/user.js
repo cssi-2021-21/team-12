@@ -13,20 +13,23 @@ const getChats = (userId) => {
     const chatsRef = firebase.database().ref(`users/${userId}/rooms/`)
     chatsRef.on('value', (snapshot) => {
         if(snapshot.val() != null) {
-            const chatId = Object.keys(snapshot.val())[0]
-            let html = ""
-            html += `<button class="button chat">
-                        ${chatId}
-                    </button>`
+            let chatIds = []
+            snapshot.forEach((child) => {
+                chatIds.push(child.key)
 
-            document.getElementById("chats").innerHTML += html
-                
-            const targetBtns = document.querySelectorAll('.chat')
-            targetBtns.forEach((button) => {
-                button.addEventListener('click', () => {
-                    getChatLog(chatId)                
-                })
+                let html = ""
+                html += `<button class="button chat">
+                            ${child.key}
+                        </button>`
+                document.getElementById("chats").innerHTML += html
             })
+            console.log(chatIds)
+            const targetBtns = document.querySelectorAll('.chat')
+            for (let i = 0; i < targetBtns.length; i++) {
+                targetBtns[i].addEventListener('click', () => {
+                    getChatLog(chatIds[i])
+                })
+            }
         }
     })
 }
