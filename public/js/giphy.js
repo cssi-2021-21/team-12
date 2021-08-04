@@ -1,57 +1,40 @@
-console.log("chat script running");
-
+//Converts string message to array of words
 const stringToWords = (message) => {
-    let rawTokens = message.split(" ");
-    let removeChars = []
+    const rawTokens = message.split(/\W/g);
     let tokens = [];
     
-    
-    for(let i = 0; i < rawTokens.length; i++){
-        console.log(rawTokens[i].search(/\w/g)); 
-        if (rawTokens[i] != ""){
-            tokens.push(rawTokens[i]);
+    for(const token of rawTokens){
+        if(token != ""){
+            tokens.push(token);
         }
     }
-    console.log(tokens);
+    return tokens;
 }
 
-
-const returnGifUrls = (keyWords) => {
-    let gifUrls = [];
-    let urlToFetch = "";
+//Converts string message to giphy image urls
+const convertMsgToGif = (message, messageId) => {
+    let keyWords = stringToWords(message);
+    let gifUrl = "";
+    const display = document.querySelector(`#${messageId}`);
     
-   for (let i = 0; i < keyWords.length; i++){
-        urlToFetch = `https://api.giphy.com/v1/gifs/search?api_key=${myKey}&q=${keyWords[i]}&limit=25&offset=0&rating=g&lang=en`;
-        console.log(urlToFetch);
-       fetch(urlToFetch)
+    let imgWidth = 10;
+    if (keyWords.length > 10){
+        imgWidth = 100/keyWords.length;
+    }
+    
+    for(const word of keyWords){
+        urlToFetch = `https://api.giphy.com/v1/gifs/search?api_key=${myKey}&q=${word}&limit=25&offset=0&rating=g&lang=en`;
+        fetch(urlToFetch)
             .then(response => response.json())
             .then(myJson => {
-                const imageUrl = myJson.data[0].images.original.url;
-                console.log(imageUrl);
-                gifUrls.push(imageUrl);
+                let imgUrl = myJson.data[0].images.original.url;
+                display.innerHTML += `<img src="${imgUrl}" alt="${word}" style="width:${imgWidth}%;"/>`
             })
         .catch(error => {
             console.log("error was: ", error);
-        }) 
+        })
     }
-    return gifUrls;
 }
 
-let stringMessage = "alice  bob   chloe;dan ellen.";
-stringToWords(stringMessage);
-/*
-let keyWords = ["cat", "dog", "bird"];
-let gifUrls = returnGifUrls(keyWords);
-let gifDisplay = "";
-console.log(gifUrls);
-
-        let html = ""
-        html += `<li>${data.user}: 
-                    ${data.message}
-                </li>`
-
-        document.getElementById("messages").innerHTML += html
-    })
-}
-
-*/
+let stringMessage = "Hello world!";
+convertMsgToGif(stringMessage, "gifs");
