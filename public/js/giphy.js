@@ -36,5 +36,5 @@ const convertMsgToGif = (message, messageId) => {
     }
 }
 
-let stringMessage = "Hello world!";
+let stringMessage = "How are you?";
 convertMsgToGif(stringMessage, "gifs");
