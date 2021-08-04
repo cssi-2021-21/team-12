@@ -29,11 +29,34 @@
                         <p class="has-text-centered"></p>
                         <ul id="chats"></ul>
                         <div class="control">
-                            <input id="roomCode" class="input" placeholder="Enter Room Code">
-                            <button class="button" onclick="enterChat()">Enter Room</button>
-                            <button class="button" onclick="createChat()">Create Room</button>
+                            <button id="profile" class="button">Profile</button>
+                            <div id="edit-profile" class="modal">
+                                <div class="modal-background"></div>
+                                    <div class="modal-card">
+                                        <header class="modal-card-head">
+                                            <p class="modal-card-title">User Profile</p>
+                                        </header>
+                                        <section class="modal-card-body">
+                                            Display Name:
+                                            <input id="new-name" class="input is-normal" type="text">
+                                        </section>
+                                        <footer class="modal-card-foot">
+                                            <button id="update-profile" class="button is-success">
+                                                Save Changes
+                                            </button>
+                                            <button id="close-profile" class="button">
+                                                Cancel
+                                            </button>
+                                        </footer>
+                                    </div>
+                            </div>
                         </div>
-                        <a class="button is-medium is-info is-outlined" onclick="signOut()">
+                        <div class="control">
+                            <input id="room-code" class="input" placeholder="Enter Room Code">
+                            <button id="enter-chat" class="button">Enter Room</button>
+                            <button id="create-chat" class="button">Create Room</button>
+                        </div>
+                        <a id="sign-out" class="button is-medium is-info is-outlined">
                             Sign Out
                         </a>
                     </div>
