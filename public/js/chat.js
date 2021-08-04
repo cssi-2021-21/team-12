@@ -22,8 +22,11 @@ const getMessageLog = () => {
         let html = ""
         html += `<li id="${snapshot.key}">
                     ${data.user}: ${data.message}
+                    <button class="button"
+                    onclick="convertMsgToGif('${data.message}', '${snapshot.key}')">
+                        Convert
+                    </button>
                 </li>`
-        
         document.getElementById("messages").innerHTML += html
     })
 }
