@@ -10,28 +10,17 @@ window.onload = (event) => {
 }
 
 const getChats = (userId) => {
-    const chatsRef = firebase.database().ref(`users/${userId}/rooms/`)
-    chatsRef.on('value', (snapshot) => {
-        if(snapshot.val() != null) {
-            let chatIds = []
-            snapshot.forEach((child) => {
-                chatIds.push(child.key)
+    const chatsRef = firebase.database().ref().child(`users/${userId}/rooms/`)
+    chatsRef.on('child_added', (snapshot) => {
+        const key = snapshot.key
 
-                let html = ""
-                html += `<button class="button chat">
-                            ${child.key}
-                        </button>`
-                document.getElementById("chats").innerHTML += html
-            })
-            
-            const targetBtns = document.querySelectorAll('.chat')
-            for (let i = 0; i < targetBtns.length; i++) {
-                targetBtns[i].addEventListener('click', () => {
-                    getChatLog(chatIds[i])
-                })
-            }
-        }
+        let html = ""
+        html += `<button class="button chat" onclick="getChatLog('${key}')">
+                    ${key}
+                </button>`
+        document.getElementById("chats").innerHTML += html
     })
+    
 }
 
 const getChatLog = (chatId) => {
@@ -102,6 +91,8 @@ document.getElementById('enter_chat').addEventListener('click', () => {
                 const updates = {}
                     updates[`users/${user.uid}/rooms/`] = updateRooms(user.uid, roomCode)
                     updates[`members/${roomCode}/`] = members
+
+                firebase.database().ref().update(updates)
 
                 getChatLog(roomCode)
             }

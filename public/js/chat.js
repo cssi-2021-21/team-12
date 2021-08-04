@@ -23,7 +23,7 @@ const getMessageLog = () => {
         html += `<li>${data.user}: 
                     ${data.message}
                 </li>`
-
+        
         document.getElementById("messages").innerHTML += html
     })
 }
