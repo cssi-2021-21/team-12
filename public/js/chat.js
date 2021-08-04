@@ -16,12 +16,12 @@ const getMessageLog = () => {
     const chatId = params.get('room');
 
     const messagesRef = firebase.database().ref().child(`messages/${chatId}/`)
-    messagesRef.on('child_added', (snapshot) => {
+    messagesRef.limitToFirst(20).on('child_added', (snapshot) => {
         const data = snapshot.val()
 
         let html = ""
-        html += `<li>${data.user}: 
-                    ${data.message}
+        html += `<li id="${snapshot.key}">
+                    ${data.user}: ${data.message}
                 </li>`
         
         document.getElementById("messages").innerHTML += html
@@ -30,9 +30,6 @@ const getMessageLog = () => {
 
 const sendMessage = () => {
     const message = document.getElementById('message')
-    console.log("MSG", message.value)    
-    // const tzoffset = (new Date()).getTimezoneOffset() * 60000
-    // const localISOTime = (new Date(Date.now() - tzoffset)).toISOString().slice(0, -1)
 
     if (message.value != "") {
         const user = firebase.auth().currentUser
@@ -60,3 +57,30 @@ const sendMessage = () => {
         message.value = ""
     }
 }
+
+const deleteMessage = (messageId, chatId) => {
+    const user = firebase.auth().currentUser
+
+    const messagesRef = firebase.database().ref(`messages/${chatId}/${messageId}/`)
+    messagesRef.on('child_removed', (snapshot) => {
+        const message = document.querySelector(`[data-id="${messageId}"]`)
+        if (message != null) {
+            message.parentNode.parentNode.removeChild(message.parentNode)
+        }
+    })
+    messagesRef.remove()
+}
+
+document.getElementById('home').addEventListener('click', () => {
+    window.location = 'user.html'
+})
+
+document.getElementById('sign-out').addEventListener('click', () => {
+    firebase.auth()
+    .signOut()
+    .then(() => {
+        window.location = 'index.html'
+    }).catch((error) => {
+        console.log(error)
+    })
+})

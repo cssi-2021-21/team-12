@@ -20,7 +20,6 @@ const getChats = (userId) => {
                 </button>`
         document.getElementById("chats").innerHTML += html
     })
-    
 }
 
 const getChatLog = (chatId) => {
@@ -29,21 +28,21 @@ const getChatLog = (chatId) => {
 }
 
 document.getElementById('profile').addEventListener('click', () => {
-    const editProfile = document.getElementById('edit_profile')
+    const editProfile = document.getElementById('edit-profile')
 
     const user = firebase.auth().currentUser
     const usersRef = firebase.database().ref(`users/${user.uid}/`)
     usersRef.on('value', (snapshot) => {
         if (snapshot.child(`users/${user.uid}/displayName/`).exists()) {
-            document.getElementById('new_name').value = user.displayName
+            document.getElementById('new-name').value = user.displayName
         }
     })
     editProfile.classList.toggle('is-active')
 })
 
-document.getElementById('update_profile').addEventListener('click', () => {
+document.getElementById('update-profile').addEventListener('click', () => {
     const user = firebase.auth().currentUser
-    const newDisplayName = document.getElementById('new_name').value
+    const newDisplayName = document.getElementById('new-name').value
 
     const profileEdits = {
         displayName: newDisplayName
@@ -51,12 +50,12 @@ document.getElementById('update_profile').addEventListener('click', () => {
     firebase.database().ref(`users/${user.uid}/`).update(profileEdits)
 })
 
-document.getElementById('close_profile').addEventListener('click', () => {
-    const editProfile = document.getElementById('edit_profile')
+document.getElementById('close-profile').addEventListener('click', () => {
+    const editProfile = document.getElementById('edit-profile')
     editProfile.classList.toggle('is-active')
 })
 
-document.getElementById('create_chat').addEventListener('click', () => {
+document.getElementById('create-chat').addEventListener('click', () => {
     const user = firebase.auth().currentUser
     const chatId = firebase.database().ref('chats/').push().key
 
@@ -66,14 +65,14 @@ document.getElementById('create_chat').addEventListener('click', () => {
 
     const updates = {}
         updates[`chats/${chatId}/`] = chatData
-        updates[`members/${chatId}/`] = { [user.uid]: true}
+        updates[`members/${chatId}/`] = { [user.uid]: true }
         updates[`users/${user.uid}/rooms/`] = updateRooms(user.uid, chatId)
 
     firebase.database().ref().update(updates)
 })
 
-document.getElementById('enter_chat').addEventListener('click', () => {
-    const roomCode = document.getElementById('room_code').value
+document.getElementById('enter-chat').addEventListener('click', () => {
+    const roomCode = document.getElementById('room-code').value
 
     const membersRef = firebase.database().ref(`members/${roomCode}/`)
     membersRef.once('value', (snapshot) => {
@@ -112,3 +111,13 @@ const updateRooms = (userId, chatId) => {
     })
     return rooms
 }
+
+document.getElementById('sign-out').addEventListener('click', () => {
+    firebase.auth()
+    .signOut()
+    .then(() => {
+        window.location = 'index.html'
+    }).catch((error) => {
+        console.log(error)
+    })
+})
