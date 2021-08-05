@@ -60,6 +60,13 @@ li:hover > button {
     display: block;
 }
 
+.copy-button {
+    background-color: var(--lgreen);
+    float: right;
+    font-size: 0.8rem;
+    margin-right: 10px;
+    display: none;
+}
 .delete-button {
     background-color: var(--red);
     float: right;

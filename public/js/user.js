@@ -24,6 +24,10 @@ const getChats = (userId) => {
                     onclick="deleteRoom('${key}')">
                         Delete
                     </button>
+                    <button class="copy-button"
+                    onclick="copyRoom('${key}')">
+                        Copy
+                    </button>
                 </li>`
         document.getElementById("chats").innerHTML += html
     })
@@ -51,7 +55,7 @@ document.getElementById('create-chat').addEventListener('click', () => {
 })
 
 document.getElementById('enter-room').addEventListener('click', () => {
-    const roomCode = document.getElementById('room-code').value
+    const roomCode = document.getElementById('room-code').value.trim()
 
     const membersRef = firebase.database().ref(`members/${roomCode}/`)
     membersRef.once('value', (snapshot) => {
@@ -93,8 +97,6 @@ const updateRooms = (userId, chatId) => {
 
 const deleteRoom = (chatId) => {
     const user = firebase.auth().currentUser
-    const room = document.querySelector(`#${chatId}`)
-    console.log(room)
    
     const chatsRef = firebase.database().ref(`chats/${chatId}/`)
     const membersRef = firebase.database().ref(`members/${chatId}/${user.uid}/`)
@@ -107,6 +109,17 @@ const deleteRoom = (chatId) => {
     usersRef.remove()
 
     document.getElementById(`${chatId}`).remove()
+}
+
+const copyRoom = (roomCode) => {
+    const copyText = document.getElementById(`${roomCode}`)
+
+    const textArea = document.createElement("textarea")
+    textArea.value = copyText.id
+    document.body.appendChild(textArea)
+    textArea.select()
+    document.execCommand("copy")
+    textArea.remove()
 }
 
 document.getElementById('sign-out').addEventListener('click', () => {
