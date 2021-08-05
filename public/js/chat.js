@@ -10,8 +10,6 @@ window.onload = (event) => {
 }
 
 const getMessageLog = () => {
-    const user = firebase.auth().currentUser
-
     const params = new URLSearchParams(window.location.search);
     const chatId = params.get('room');
 
@@ -21,7 +19,7 @@ const getMessageLog = () => {
 
         let html = ""
         html += `<li>
-                    <div class="sender">${user.displayName}
+                    <div class="sender">${data.displayName}
                         <button class="gif-button"
                         onclick="convertMsgToGif('${data.message}', '${snapshot.key}')">
                             GIF
@@ -44,6 +42,7 @@ document.getElementById('send').addEventListener('click', () => {
 
         const messageData = {
             user: user.uid,
+            displayName: user.displayName,
             message: message.value,
             createdAt: new Date()
         }
