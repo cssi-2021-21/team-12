@@ -15,9 +15,9 @@ const stringToWords = (message) => {
 const convertMsgToGif = (message, messageId) => {
     let keyWords = stringToWords(message);
     let gifUrl = "";
-    const display = document.querySelector(`#${messageId}`);
+    const display = document.getElementById(`${messageId}`);
     
-    let imgWidth = 10;
+    let imgWidth = 25;
     if (keyWords.length > 10){
         imgWidth = 100/keyWords.length;
     }
@@ -27,11 +27,16 @@ const convertMsgToGif = (message, messageId) => {
         fetch(urlToFetch)
             .then(response => response.json())
             .then(myJson => {
-                let imgUrl = myJson.data[0].images.original.url;
-                display.innerHTML += `<img src="${imgUrl}" alt="${word}" style="width:${imgWidth}%;"/>`
+                let random = Math.floor(Math.random()*25)
+                console.log(random)
+                let imgUrl = myJson.data[random].images.original.url;
+                
+                let html = ""
+                    html += `<img src="${imgUrl}" alt="${word}" style="width:${imgWidth}%;"/>`
+                display.innerHTML = html
             })
         .catch(error => {
-            console.log("error was: ", error);
+            console.log(error);
         })
     }
 }

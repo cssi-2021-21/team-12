@@ -20,18 +20,23 @@ const getMessageLog = () => {
         const data = snapshot.val()
 
         let html = ""
-        html += `<li id="${snapshot.key}">
-                    ${data.user}: ${data.message}
-                    <button class="button"
-                    onclick="convertMsgToGif('${data.message}', '${snapshot.key}')">
-                        Convert
-                    </button>
+        html += `<li>
+                    <div class="sender">${user.displayName}
+                        <button class="gif-button"
+                        onclick="convertMsgToGif('${data.message}', '${snapshot.key}')">
+                            GIF
+                        </button>
+                    </div>
+                    <div id="message-data">
+                        ${data.message}
+                    </div>
+                    <div id="${snapshot.key}"></div>
                 </li>`
         document.getElementById("messages").innerHTML += html
     })
 }
 
-const sendMessage = () => {
+document.getElementById('send').addEventListener('click', () => {
     const message = document.getElementById('message')
 
     if (message.value != "") {
@@ -59,20 +64,7 @@ const sendMessage = () => {
         firebase.database().ref().update(updates)
         message.value = ""
     }
-}
-
-const deleteMessage = (messageId, chatId) => {
-    const user = firebase.auth().currentUser
-
-    const messagesRef = firebase.database().ref(`messages/${chatId}/${messageId}/`)
-    messagesRef.on('child_removed', (snapshot) => {
-        const message = document.querySelector(`[data-id="${messageId}"]`)
-        if (message != null) {
-            message.parentNode.parentNode.removeChild(message.parentNode)
-        }
-    })
-    messagesRef.remove()
-}
+})
 
 document.getElementById('home').addEventListener('click', () => {
     window.location = 'user.html'

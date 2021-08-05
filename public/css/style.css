@@ -1,8 +1,60 @@
-html, body {
-    font-family: 'Open Sans';
+@import url('https://fonts.googleapis.com/css2?family=BioRhyme:wght@400;700;800&display=swap');
+
+:root {
+    --white: #F3F1E4;
+    --lgreen: #A9B539;
+    --green: #868F40;
+    --dgreen: #445137;
+    --peach: #F4A058;
+    --lorange: #F57722;
+    --orange: #E85722;
+    --dorange: #B83C1A;
 }
 
-img {
-    padding: 5px;
-    border: 1px solid #ccc;
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+html, body {
+    background-color: var(--green);
+    font-family: 'BioRhyme', serif;
+}
+
+.main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+h1 {
+    font-size: 5rem;
+    color: var(--dgreen);
+}
+
+h2 {
+    font-size: 2rem;
+    font-weight: 600;
+    color: var(--white);
+}
+
+button {
+    background-color: var(--lorange);
+    border: none;
+    border-radius: 10px;
+    font-family: 'BioRhyme', serif;
+    font-size: 1.5rem;
+    color: var(--white);
+    padding: 10px 15px;
+    transition: all 0.3s ease-in;
+}
+
+#sign-in {
+    margin-top: 50px;
+}
+#sign-in:hover {
+    background-color: var(--lgreen);
 }

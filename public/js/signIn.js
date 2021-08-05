@@ -1,4 +1,4 @@
-const signIn = () => {
+document.getElementById('sign-in').addEventListener('click', () => {
   var provider = new firebase.auth.GoogleAuthProvider();
 
   firebase.auth()
@@ -23,4 +23,4 @@ const signIn = () => {
     };
     console.log(err);
   });
-}
+})

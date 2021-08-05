@@ -1,0 +1,123 @@
+@import url('https://fonts.googleapis.com/css2?family=BioRhyme:wght@400;700;800&display=swap');
+:root {
+    --white: #F3F1E4;
+    --lgreen: #A9B539;
+    --green: #868F40;
+    --dgreen: #445137;
+    --peach: #F4A058;
+    --lorange: #F57722;
+    --orange: #E85722;
+    --dorange: #B83C1A;
+    --red: #f52549;
+}
+
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+html, body {
+    background-color: var(--green);
+    font-family: 'BioRhyme', serif;
+}
+
+button {
+    border: none;
+    border-radius: 10px;
+    font-family: 'BioRhyme', serif;
+    font-size: 1.5rem;
+    color: var(--white);
+    padding: 10px 15px;
+    transition: all 0.3s ease-in;
+}
+
+h1 {
+    position: absolute;
+    top: 50px;
+    font-size: 5rem;
+    color: var(--dgreen);
+}
+
+a {
+    color: var(--white);
+    font-size: 1.5rem;
+}
+
+li {
+    list-style-type: none;
+    margin: 5px 0;
+    width: 100%;
+    text-align: center;
+}
+
+a:hover {
+    color: var(--peach);
+    cursor: default;
+}
+
+li:hover > button {
+    display: block;
+}
+
+.delete-button {
+    background-color: var(--red);
+    float: right;
+    font-size: 0.8rem;
+    display: none;
+}
+
+.main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+#chats {
+    max-height: 400px;
+    width: 750px;
+    padding: 0 50px;
+    margin-top: 50px;
+    text-align: center;
+    overflow-y: scroll;
+}
+
+.room-input {
+    padding: 0.5rem;
+    margin: 25px 0;
+}
+#room-code {
+    border: none;
+    border-radius: 10px;
+    padding: 0 10px;
+    font-family: 'BioRhyme', serif;
+    font-size: 1.5rem;
+    height: 100%;
+}
+#room-code:focus {
+    outline: none;
+}
+#enter-room {
+    background-color: var(--lorange);
+}
+#enter-room:hover {
+    background-color: var(--red);
+}
+
+#create-chat {
+    background-color: var(--lgreen);
+    margin: 20px 0;
+}
+#create-chat:hover {
+    background-color: var(--peach);
+}
+
+#sign-out {
+    background-color: var(--dgreen);
+    padding: 10px 15px;
+}
+#sign-out:hover {
+    background-color: var(--orange);
+}
