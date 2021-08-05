@@ -15,7 +15,7 @@ const getChats = (userId) => {
         const key = snapshot.key
 
         let html = ""
-        html += `<li>
+        html += `<li class="fade">
                     <a id="${key}" 
                     onclick="getChatLog('${key}')">
                         ${key}

@@ -18,7 +18,7 @@ const getMessageLog = () => {
         const data = snapshot.val()
 
         let html = ""
-        html += `<li>
+        html += `<li class="fade">
                     <div class="sender">${data.displayName}
                         <button class="gif-button"
                         onclick="convertMsgToGif('${data.message}', '${snapshot.key}')">
