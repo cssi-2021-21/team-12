@@ -16,6 +16,7 @@ const convertMsgToGif = (message, messageId) => {
     let keyWords = stringToWords(message);
     let gifUrl = "";
     const display = document.getElementById(`${messageId}`);
+    let addHtml = "";
     
     let imgWidth = 20;
     let counter = 0;
@@ -28,10 +29,11 @@ const convertMsgToGif = (message, messageId) => {
                 let random = Math.floor(Math.random()*25)
                 let imgUrl = myJson.data[random].images.original.url;
                 counter ++;
-                display.innerHTML += `<img src="${imgUrl}" alt="${word}" style="width:${imgWidth}%;"/>`
+                addHtml += `<img src="${imgUrl}" alt="${word}" style="width:${imgWidth}%;"/>`
                 if (counter % 5 === 0){
-                    display.innerHTML += "<br>";
+                    addHtml += "<br>";
                 }
+                display.innerHTML = addHtml;
             })
         .catch(error => {
             console.log(error);
